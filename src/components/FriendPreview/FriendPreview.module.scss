@@ -1,0 +1,23 @@
+@import "../../libs/variables.scss";
+
+.friend{
+    $size: 70px;
+    margin-bottom: 20px;
+    display: flex;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 10px $lightgrey;
+
+    img{
+        width: $size;
+        height: $size;
+        border-radius: 50%;
+        box-shadow: 0 0 10px $lightgrey;
+    }
+
+    p{
+        line-height: $size;
+        margin: 0;
+        margin-left: 10px;
+    }
+}
