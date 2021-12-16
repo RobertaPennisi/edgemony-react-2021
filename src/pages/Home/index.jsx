@@ -2,13 +2,11 @@ import styles from './Home.module.scss'
 import {FriendPreview} from '../../components/FriendPreview'
 import {MessagePreview} from '../../components/MessagePreview'
 import {PostPreview} from '../../components/PostPreview'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { http } from "../../libs/http";
 
-const friends = [
-    { name:'Chandler', photo: 'https://randomuser.me/api/portraits/lego/7.jpg'},
-    { name:'Pippo', photo: 'https://randomuser.me/api/portraits/lego/2.jpg'},
-    { name:'Geralt', photo: 'https://randomuser.me/api/portraits/lego/8.jpg'}
-]
+const friends = [];
+
 const messages = [
     { text: 'lorem ipsum', date: new Date(), sender: 'Pippo'},
     { text: 'bau bau', date: new Date(), sender: 'Pluto'},
@@ -24,9 +22,16 @@ const posts = [
 ]
 
 const Home = () => {
-    const [friendsPreview] = useState(friends);
-    const [allPosts] = useState(posts);
-    const [messagesPreview] = useState(messages);
+    const [friendsPreview, setFriendsPreview] = useState(friends);
+    const [allPosts, setAllPosts] = useState(posts);
+    const [messagesPreview, setMessagesPreview] = useState(messages);
+
+    
+    useEffect(() =>{
+        http("/friends?_limit=4").then((data) => setFriendsPreview(data));
+        http("/messages?_limit=4").then((data) => setMessagesPreview(data));
+        http("/posts").then((data) => setAllPosts(data));
+    }, []);
 
     return(
         <section className={styles.home}>
