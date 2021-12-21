@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styles from "./Header.module.scss";
 
 const Header = (props) => {
@@ -11,7 +12,7 @@ const Header = (props) => {
                 <ul>
                     { links.map((item, index) => (
                         <li key={index}>
-                        <a href={item.link}>{item.label}</a>
+                            <NavLink className={({ isActive }) => isActive ? styles.active : ""} to={item.link}>{item.label}</NavLink>
                         </li>
                     ))}
                 </ul>

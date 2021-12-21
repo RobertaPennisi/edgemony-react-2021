@@ -31,7 +31,7 @@ const Home = () => {
         http("/friends?_limit=4").then((data) => setFriendsPreview(data));
         http("/messages?_limit=4").then((data) => setMessagesPreview(data));
         http("/posts").then((data) => setAllPosts(data));
-    }, []);
+    }, []); 
 
     return(
         <section className={styles.home}>

@@ -11,7 +11,7 @@ const MessagePreview = (props) => {
     return (
         <div className={styles.message}>
             <h5>{data.sender}</h5>
-            <DateTime data={data.date} />
+            {data.date ? <DateTime data={data.date} /> : <></>}
             <p>{data.text}</p>
         </div>
     )
